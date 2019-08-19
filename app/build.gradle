@@ -38,7 +38,7 @@ dependencies {
 
     // region UI
     implementation "androidx.appcompat:appcompat:$v.androidx"
-    implementation "androidx.recyclerview:recyclerview:$v.androidx"
+    implementation "androidx.recyclerview:recyclerview:$v.recyclerview"
     implementation "androidx.constraintlayout:constraintlayout:$v.constraint_layout"
     implementation "com.google.android.material:material:$v.android_material"
     implementation "com.android.support:design:$v.support"
