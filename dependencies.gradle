@@ -1,0 +1,34 @@
+ext {
+    versions = [
+            // region Kotlin
+            coroutines : '1.0.1',
+            koin : '2.0.1',
+
+            // region UI
+            androidx : '1.1.0-rc01',
+            constraint_layout : '2.0.0-beta2',
+            android_material : '1.1.0-alpha09',
+            support: '29.0.0',
+
+            // region Networking
+            okhttp : '3.10.0',
+            retrofit : '2.4.0',
+            gson : '2.8.5',
+
+            // testing
+            junit : '4.12',
+            mockito_kotlin : '2.1.0',
+            espresso : '3.1.0',
+            android_testing : '1.1.0',
+    ]
+
+    tools = [
+            minSdkVersion       : 19,
+            compileSdkVersion   : 29,
+            targetSdkVersion    : 28,
+            applicationId       : "com.lucasmarciano.bitcointest",
+            versionCode         : 1,
+            versionName         : "1.0.0",
+            buildToolsVersion   : "29.0.0"
+    ]
+}
