@@ -1,7 +1,8 @@
-package com.lucasmarciano.bitcointest
+package com.lucasmarciano.bitcointest.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.lucasmarciano.bitcointest.R
 
 class MainActivity : AppCompatActivity() {
 

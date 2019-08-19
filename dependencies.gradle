@@ -2,13 +2,14 @@ ext {
     versions = [
             // region Kotlin
             coroutines : '1.0.1',
-            koin : '2.0.1',
+            koin : '1.0.2',
 
             // region UI
             androidx : '1.1.0-rc01',
             constraint_layout : '2.0.0-beta2',
             android_material : '1.1.0-alpha09',
             support: '29.0.0',
+            recyclerview: '1.1.0-beta03',
 
             // region Networking
             okhttp : '3.10.0',
