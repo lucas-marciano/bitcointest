@@ -16,7 +16,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
-        buildConfigField "String", "BASE_URL", "\"https://game-checkout.herokuapp.com\""
+        buildConfigField "String", "BASE_URL", "\"https://api.blockchain.info/charts/transactions-per-second\""
     }
     buildTypes {
         release {
