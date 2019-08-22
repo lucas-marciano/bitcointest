@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     private fun setupMainCard(transaction: Transactions) {
         if(Logger.DEBUG) Log.d(TAG, "setupMainCard")
-        tvMainDate.text = transaction.data
+        tvMainDate.text = transaction.data.convertTimestampToDate()
         tvMainValue.text = "${transaction.value}%"
     }
 

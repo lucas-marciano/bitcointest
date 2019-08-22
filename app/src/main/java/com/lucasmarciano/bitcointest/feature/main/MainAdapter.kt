@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.lucasmarciano.bitcointest.R
 import com.lucasmarciano.bitcointest.base.extensions.convertTimestampToDate
@@ -41,7 +39,7 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun render(item: Transactions) {
-            itemView.tvData.text = item.data
+            itemView.tvData.text = item.data.convertTimestampToDate()
             itemView.tvValue.text = item.value.toPercent()
             itemView.tvDifference.text = item.difference.toPercent()
 
