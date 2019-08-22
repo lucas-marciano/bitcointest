@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BitcoinTest</string>
     <string name="label_title_main_card">Cotação mais recente do Bitcoin</string>
+    <string name="cd_recent_cotation">Icone para cotação mais recente</string>
+    <string name="cd_dfference_cotation">Icone indica diferença da cotação anterior</string>
+    <string name="cd_cotation">Icone da cotação</string>
 </resources>

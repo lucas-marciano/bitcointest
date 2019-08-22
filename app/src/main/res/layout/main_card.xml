@@ -4,8 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:background="@color/colorAccent">
+        android:padding="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -16,14 +15,14 @@
         <TextView
                 android:id="@+id/tvMainInfo"
                 android:layout_width="0dp"
-                android:text="@string/label_title_main_card"
                 android:layout_height="wrap_content"
+                android:text="@string/label_title_main_card"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="22sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ivIcon"
-                android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
                 android:id="@+id/tvMainValue"
@@ -31,30 +30,35 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="tvMainValue"
+                android:drawableStart="@drawable/ic_money"
+                android:drawablePadding="5dp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivIcon"
                 app:layout_constraintTop_toBottomOf="@+id/tvMainInfo" />
 
         <TextView
                 android:id="@+id/tvMainDate"
-                android:text="tvMainDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/ivIcon"
                 android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvMainValue"/>
+                android:drawableStart="@drawable/ic_date"
+                android:drawablePadding="5dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvMainValue" />
 
         <ImageView
                 android:id="@+id/ivIcon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/ic_important"
+                android:contentDescription="@string/cd_recent_cotation"
+                app:srcCompat="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvMainInfo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
