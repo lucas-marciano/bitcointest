@@ -2,68 +2,60 @@
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_marginBottom="8dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@color/colorAccent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="8dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:padding="8dp">
 
         <TextView
+                android:id="@+id/tvMainInfo"
                 android:layout_width="0dp"
+                android:text="@string/label_title_main_card"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvValue"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivIcon"
                 android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
+                android:id="@+id/tvMainValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvData"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="tvMainValue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvMainInfo" />
+
+        <TextView
+                android:id="@+id/tvMainDate"
+                android:text="tvMainDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/ivIcon"
                 android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvValue"/>
-
-        <TextView
-                android:id="@+id/tvDifference"
-                android:layout_width="0dp"
-                android:gravity="end"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintEnd_toStartOf="@+id/ivIndicator"
-                android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvMainValue"/>
 
         <ImageView
                 android:id="@+id/ivIcon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/ic_money"
+                app:srcCompat="@drawable/ic_important"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ImageView
-                android:id="@+id/ivIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_down"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvData"
-                android:layout_marginTop="8dp"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.cardview.widget.CardView>
