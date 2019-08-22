@@ -31,14 +31,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="tvMainValue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivIcon"
                 app:layout_constraintTop_toBottomOf="@+id/tvMainInfo" />
 
         <TextView
                 android:id="@+id/tvMainDate"
-                android:text="tvMainDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/ivIcon"
@@ -54,7 +52,8 @@
                 app:srcCompat="@drawable/ic_important"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="@string/cd_recent_cotation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

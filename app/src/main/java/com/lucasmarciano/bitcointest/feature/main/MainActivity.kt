@@ -1,5 +1,6 @@
 package com.lucasmarciano.bitcointest.feature.main
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,82 +20,105 @@ import org.koin.core.parameter.parametersOf
 
 class MainActivity : AppCompatActivity(), MainContract.View {
     private val TAG = Logger.getTag()
+    private val KEY_LIST = "key_list_transaction"
+    private val KEY_OBJECT = "key_main_transaction"
 
     override val presenter by inject<MainContract.Presenter> { parametersOf(this) }
     private val adapter by lazy { MainAdapter() }
 
     private var mTransactions: MutableList<Transactions> = mutableListOf()
+    private var mTransactionMain: Transactions = Transactions()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if(Logger.DEBUG) Log.d(TAG, "onCreate")
+        if (Logger.DEBUG) Log.d(TAG, "onCreate")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar as Toolbar)
+        toolbar.title = resources.getString(R.string.app_name)
 
         if (savedInstanceState != null) {
-            mTransactions = savedInstanceState.getParcelableArrayList("key_list_transaction")!!
+            mTransactions = savedInstanceState.getParcelableArrayList(KEY_LIST)!!
+            mTransactionMain = savedInstanceState.getParcelable(KEY_OBJECT)!!
             adapter.data = mTransactions
             hideLoading()
         } else {
             presenter.loadTransactions()
         }
+    }
 
+    override fun onResume() {
+        if (Logger.DEBUG) Log.d(TAG, "onResume")
+
+        super.onResume()
         setupViews()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        if(Logger.DEBUG) Log.d(TAG, "onSaveInstanceState")
-        outState.putParcelableArrayList("key_list_transaction", ArrayList(mTransactions))
+        if (Logger.DEBUG) Log.d(TAG, "onSaveInstanceState")
+
+        outState.putParcelableArrayList(KEY_LIST, ArrayList(mTransactions))
+        outState.putParcelable(KEY_OBJECT, mTransactionMain)
         super.onSaveInstanceState(outState)
     }
 
     override fun showLoading() {
-        if(Logger.DEBUG) Log.d(TAG, "showLoading")
+        if (Logger.DEBUG) Log.d(TAG, "showLoading")
+
         mainViewLoading.isVisible = true
     }
 
     override fun hideLoading() {
-        if(Logger.DEBUG) Log.d(TAG, "hideLoading")
+        if (Logger.DEBUG) Log.d(TAG, "hideLoading")
+
         mainViewLoading.isVisible = false
     }
 
     override fun onSuccessfulLoad(response: Response) {
-        if(Logger.DEBUG) Log.d(TAG, "onSuccessfulLoad")
+        if (Logger.DEBUG) Log.d(TAG, "onSuccessfulLoad")
 
-        cvMain.isVisible = true
         mTransactions = response.values
         calcDifferences()
-        val current = mTransactions[0]
+        mTransactionMain = mTransactions[0]
         mTransactions.removeAt(0)
-        adapter.data = mTransactions
-        setupMainCard(current)
+        setupViews()
     }
 
     override fun onFailureLoad(message: String) {
-        if(Logger.DEBUG) Log.d(TAG, message)
+        if (Logger.DEBUG) Log.d(TAG, message)
+
         showToast(message)
         cvMain.isVisible = false
     }
 
     private fun setupViews() {
-        if(Logger.DEBUG) Log.d(TAG, "setupViews")
-        setSupportActionBar(toolbar as Toolbar)
-        toolbar.title = resources.getString(R.string.app_name)
-        rvTransactions.layoutManager = LinearLayoutManager(this)
-        rvTransactions.adapter = adapter
+        if (Logger.DEBUG) Log.d(TAG, "setupViews")
+
+        if (mTransactions.size > 0) {
+            cvMain.isVisible = true
+            rvTransactions.layoutManager = LinearLayoutManager(this)
+            setupMainCard()
+            adapter.data = mTransactions
+            rvTransactions.adapter = adapter
+        } else {
+            cvMain.isVisible = false
+        }
     }
 
-    private fun setupMainCard(transaction: Transactions) {
-        if(Logger.DEBUG) Log.d(TAG, "setupMainCard")
-        tvMainDate.text = transaction.data.convertTimestampToDate()
-        tvMainValue.text = "${transaction.value}%"
+    @SuppressLint("SetTextI18n")
+    private fun setupMainCard() {
+        if (Logger.DEBUG) Log.d(TAG, "setupMainCard")
+
+        tvMainDate.text = mTransactionMain.data.convertTimestampToDate()
+        tvMainValue.text = "${mTransactionMain.value}%"
     }
 
     private fun calcDifferences() {
-        if(Logger.DEBUG) Log.d(TAG, "calcDifferences")
+        if (Logger.DEBUG) Log.d(TAG, "calcDifferences")
+
         mTransactions.forEachIndexed { index, current ->
-            if(mTransactions.size > index + 1)
-                mTransactions[index].difference = current.value - mTransactions[index+1].value
+            if (mTransactions.size > index + 1)
+                mTransactions[index].difference = current.value - mTransactions[index + 1].value
         }
     }
 }
