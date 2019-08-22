@@ -3,6 +3,7 @@ package com.lucasmarciano.bitcointest.base.di
 import com.google.gson.GsonBuilder
 import com.lucasmarciano.bitcointest.feature.main.MainContract
 import com.lucasmarciano.bitcointest.feature.main.MainPresenter
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module.module
 import retrofit2.Converter
@@ -25,5 +26,5 @@ val featureModule = module {
 }
 
 val dispatcherModule = module {
-    factory { Dispatchers.Main }
+    factory { Dispatchers.Main as CoroutineDispatcher }
 }

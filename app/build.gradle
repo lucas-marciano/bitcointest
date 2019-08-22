@@ -16,13 +16,16 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
-        buildConfigField "String", "BASE_URL", "\"https://api.blockchain.info/charts/transactions-per-second\""
+        buildConfigField "String", "BASE_URL", "\"https://api.blockchain.info/charts/transactions-per-second/\""
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    androidExtensions {
+        experimental = true
     }
 }
 
@@ -50,8 +53,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$v.retrofit"
 
     // region Testing
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation "junit:junit:$v.junit"
     testImplementation "org.koin:koin-test:$v.koin"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$v.mockito_kotlin"

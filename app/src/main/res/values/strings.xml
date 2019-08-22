@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BitcoinTest</string>
+    <string name="label_title_main_card">Cotação mais recente do Bitcoin</string>
 </resources>
