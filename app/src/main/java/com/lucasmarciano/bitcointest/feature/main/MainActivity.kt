@@ -17,11 +17,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_card.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import android.view.Menu
+import android.view.MenuItem
+
+
+const val KEY_LIST = "key_list_transaction"
+const val KEY_OBJECT = "key_main_transaction"
 
 class MainActivity : AppCompatActivity(), MainContract.View {
     private val TAG = Logger.getTag()
-    private val KEY_LIST = "key_list_transaction"
-    private val KEY_OBJECT = "key_main_transaction"
 
     override val presenter by inject<MainContract.Presenter> { parametersOf(this) }
     private val adapter by lazy { MainAdapter() }
@@ -62,6 +66,22 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         super.onSaveInstanceState(outState)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.menu_action_save -> {
+                saveLocal()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
     override fun showLoading() {
         if (Logger.DEBUG) Log.d(TAG, "showLoading")
 
@@ -77,7 +97,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun onSuccessfulLoad(response: Response) {
         if (Logger.DEBUG) Log.d(TAG, "onSuccessfulLoad")
 
-        mTransactions = response.values
+        val aux = response.values.asReversed()
+        mTransactions = aux
         calcDifferences()
         mTransactionMain = mTransactions[0]
         mTransactions.removeAt(0)
@@ -85,7 +106,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun onFailureLoad(message: String) {
-        if (Logger.DEBUG) Log.d(TAG, message)
+        if (Logger.DEBUG) Log.e(TAG, message)
 
         showToast(message)
         cvMain.isVisible = false
@@ -120,5 +141,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             if (mTransactions.size > index + 1)
                 mTransactions[index].difference = current.value - mTransactions[index + 1].value
         }
+    }
+
+    private fun saveLocal(){
+        presenter.saveAll(mTransactions)
+        showToast("Salvando ...")
     }
 }

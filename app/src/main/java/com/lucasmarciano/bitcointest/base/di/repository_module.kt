@@ -1,5 +1,7 @@
 package com.lucasmarciano.bitcointest.base.di
 
+import com.lucasmarciano.bitcointest.data.local.TransactionsLocalRepository
+import com.lucasmarciano.bitcointest.data.local.TransactionsStaticLocalRepository
 import com.lucasmarciano.bitcointest.data.remote.TransactionApi
 import com.lucasmarciano.bitcointest.data.remote.TransactionRepository
 import com.lucasmarciano.bitcointest.data.remote.TransactionService
@@ -10,4 +12,6 @@ val repositoryModule = module {
     factory { get<Retrofit>(BASE_SERVER).create(TransactionApi::class.java) }
 
     factory { TransactionService(api = get()) } bind TransactionRepository::class
+
+    factory { TransactionsStaticLocalRepository() } bind TransactionsLocalRepository::class
 }

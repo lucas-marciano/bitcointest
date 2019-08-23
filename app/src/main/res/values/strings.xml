@@ -4,4 +4,5 @@
     <string name="cd_recent_cotation">Icone para cotação mais recente</string>
     <string name="cd_dfference_cotation">Icone indica diferença da cotação anterior</string>
     <string name="cd_cotation">Icone da cotação</string>
+    <string name="label_action_save">Salvar</string>
 </resources>
