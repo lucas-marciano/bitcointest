@@ -14,6 +14,7 @@ val appModule = module {
         MainPresenter(
             view = view,
             repository = get(),
+            localRepository = get(),
             dispatcherContext = get()
         )
     } bind MainContract.Presenter::class
